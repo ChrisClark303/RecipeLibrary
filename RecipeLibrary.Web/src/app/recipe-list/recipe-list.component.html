@@ -1,0 +1,26 @@
+<div class="list">
+    <div class="list-border list-header">
+        <span class="list-title">Recipes</span>
+    </div>
+    <div class="list-border list-search">
+        <input class="list-border" #recipeSearch />
+    </div>
+    <div class="list-border list-container">
+        <ul class="ui-listbox-list">
+            <li class="ui-listbox-item" *ngFor="let recipe of recipes$ | async" (click)="selectRecipe(recipe)" >
+                <div class="badge">
+                    <span>{{recipe.name}}</span>
+                </div> 
+                Serves {{recipe.serves}}
+                <div class="badge-end">
+                    <span>{{recipe.caloriesPerPerson}} calories pp</span>
+                </div>
+            </li>
+          </ul>
+    </div>
+    <div class="list-border list-footer">
+        <a routerLink="/create-recipe">
+            Create a new recipe
+          </a>
+    </div>
+</div>

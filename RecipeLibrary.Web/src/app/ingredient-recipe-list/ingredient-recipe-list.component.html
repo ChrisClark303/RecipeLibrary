@@ -1,0 +1,20 @@
+<div class="list">
+    <div class="list-border list-header">
+        <span class="list-title">{{this.title}}</span></div>
+    <!-- <div class="list-border list-search">
+        <input class="list-border" #ingredientSearch (input)="search(ingredientSearch.value)" />
+    </div> -->
+    <div class="list-border list-container">
+        <ul class="ui-listbox-list">
+            <li class="ui-listbox-item" *ngFor="let ingredient of selectedIngredients" >
+              <div *ngIf="ingredient">
+                  <div class="badge">
+                    <span>{{ingredient.ingredient.name}}</span>
+                  </div>
+                  {{ingredient.measurement}} 
+                  <!-- {{ingredient.quantity}} x {{ingredient.ingredient.measurement}} -->
+            </div>
+            </li>
+          </ul>
+    </div>
+  </div>

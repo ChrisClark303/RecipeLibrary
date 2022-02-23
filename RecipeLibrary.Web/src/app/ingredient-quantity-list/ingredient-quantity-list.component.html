@@ -1,0 +1,17 @@
+<div class="list">
+    <div class="list-border list-header">
+        <span class="list-title">Ingredient Quantities</span>
+    </div>
+    <!-- <div class="list-border list-search">
+        <input class="list-border" #ingredientSearch (input)="search(ingredientSearch.value)" />
+    </div> -->
+    <div class="list-border list-container">
+        <ul class="ui-listbox-list">
+            <li class="ui-listbox-item" *ngFor="let ri of recipeIngredients" >
+              <div>
+                  <div class="badge"><span>{{ri.ingredient.name}}</span></div><input type="number" step="0.01" class="list-border list-input" #selectItem [(ngModel)]="ri.quantity" />
+            </div>
+            </li>
+          </ul>
+    </div>
+  </div>
