@@ -14,11 +14,21 @@ namespace RecipeLibrary.Core
 
         public IMongoCollection<BsonDocument> Connect(string collectionName)
         {
+            IMongoDatabase database = OpenDatabase();
+            return database.GetCollection<BsonDocument>(collectionName);
+        }
+
+        private IMongoDatabase OpenDatabase()
+        {
             var connString = $"mongodb+srv://{_settings.UserName}:{_settings.Password}@{_settings.Uri}?retryWrites=true&w=majority";
             var client = new MongoClient(connString);
-            var database = client.GetDatabase("RecipeData");
+            return client.GetDatabase("RecipeData");
+        }
 
-            return database.GetCollection<BsonDocument>(collectionName);
+        public IMongoCollection<TDocType> Connect<TDocType>(string collectionName)
+        {
+            IMongoDatabase database = OpenDatabase();
+            return database.GetCollection<TDocType>(collectionName);
         }
     }
 }

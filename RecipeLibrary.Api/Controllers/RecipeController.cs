@@ -18,10 +18,17 @@ namespace RecipeLibrary.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetRecipes()
         {
             await _library.Load();
             return Ok(_library.Recipes);
+        }
+
+        [HttpGet("{recipeId}")]
+        public async Task<IActionResult> GetRecipe(string recipeId)
+        {
+            var recipe = await _library.LoadById(recipeId);
+            return Ok(recipe);
         }
 
         [HttpPost]

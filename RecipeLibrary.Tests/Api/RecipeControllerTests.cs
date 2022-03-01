@@ -21,7 +21,7 @@ namespace RecipeLibrary.Tests.Api
             var library = new Mock<IRecipeLibrary>();
             var controller = CreateController(library);
 
-            await controller.Get();
+            await controller.GetRecipes();
 
             library.Verify(lib => lib.Load());
         }
@@ -32,7 +32,7 @@ namespace RecipeLibrary.Tests.Api
             var library = new Mock<IRecipeLibrary>();
             var controller = CreateController(library);
 
-            var result = await controller.Get();
+            var result = await controller.GetRecipes();
 
             Assert.IsType<OkObjectResult>(result);
         }
@@ -46,7 +46,7 @@ namespace RecipeLibrary.Tests.Api
                 .Returns(recipes);
             var controller = CreateController(library);
 
-            var result = await controller.Get();
+            var result = await controller.GetRecipes();
 
             var objResult = Assert.IsType<OkObjectResult>(result);
             Assert.Equal(recipes, objResult.Value);

@@ -26,7 +26,7 @@ export class CreateRecipeComponent implements OnInit {
    }
 
   private initializeRecipe() {
-    this.recipe = { ingredients: new Array<RecipeIngredient>(), name: "", serves: null };
+    this.recipe = { recipeId: "", ingredients: new Array<RecipeIngredient>(), name: "", serves: null };
   }
 
   ngOnInit(): void {

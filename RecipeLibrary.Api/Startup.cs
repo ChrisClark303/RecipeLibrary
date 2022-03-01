@@ -43,6 +43,7 @@ namespace RecipeLibrary.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<AutofacModule>();
+            builder.RegisterModule<AutomapperModule>();
             builder.RegisterModule(new SettingsModule(_appSettings));
         }
 

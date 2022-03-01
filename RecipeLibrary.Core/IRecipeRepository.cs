@@ -7,5 +7,6 @@ namespace RecipeLibrary.Core
     {
         Task<Recipe[]> Load();
         Task Save(Recipe[] recipes);
+        Task<Recipe> LoadById(string recipeId);
     }
 }

@@ -5,6 +5,7 @@ namespace RecipeLibrary.Models
 {
     public class Recipe
     {
+        public string RecipeId { get; set; }
         public string Name { get; set; }
         public int Serves { get; set; }
         public RecipeIngredient[] Ingredients { get; set; } = new RecipeIngredient[0];

@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using AutoMapper;
+using RecipeLibrary.Api.Automapper;
 using RecipeLibrary.Core;
 using System.Linq;
 using System.Reflection;
@@ -32,9 +34,18 @@ namespace RecipeLibrary.Api
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register<MongoSettings>((ctx )=> _settings.MongoSettings)
-                .As<IMongoSettings>()
-                .SingleInstance();
+            builder.RegisterInstance<IMongoSettings>(_settings.MongoSettings);
+        }
+    }
+
+    public class AutomapperModule : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<DocumentProfile>());
+            var mapper = new Mapper(config);
+
+            builder.RegisterInstance<IMapper>(mapper);
         }
     }
 }

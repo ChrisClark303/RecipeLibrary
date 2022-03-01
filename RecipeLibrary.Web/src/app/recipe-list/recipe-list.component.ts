@@ -43,8 +43,10 @@ export class RecipeListComponent implements OnInit {
 
   selectRecipe(recipe:Recipe) {
     console.log(recipe.name);
-    this.selectedRecipe = recipe;
-    this.onRecipeSelected.emit(recipe);
+    //would need to get recipe here
+    this.recipeService.getRecipeById(recipe.recipeId)
+      .subscribe(x => {
+        this.selectedRecipe = x;
+        this.onRecipeSelected.emit(recipe)});
   }
-
 }

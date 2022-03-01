@@ -25,6 +25,12 @@ namespace RecipeLibrary.Core
             _recipes = new List<Recipe>(recipes);
         }
 
+        public async Task<Recipe> LoadById(string recipeId)
+        {
+            var recipe = await _recipeRepository.LoadById(recipeId);
+            return recipe;
+        }
+
         public async Task Save()
         {
             await _recipeRepository.Save(_recipes.ToArray());

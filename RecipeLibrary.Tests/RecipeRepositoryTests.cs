@@ -7,14 +7,15 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 
 namespace RecipeLibrary.Tests
 {
     public partial class RecipeRepositoryTests
     {
-        private RecipeRepository CreateRepository(Mock<IFileSystem> fs = null, Mock<IIngredientRepository> ingredientRepo = null)
+        private RecipeRepository CreateRepository(Mock<IFileSystem> fs = null, Mock<IIngredientRepository> ingredientRepo = null, Mock<IMapper> mapper = null)
         {
-            return new RecipeRepository((fs ?? CreateFileSystem()).Object, (ingredientRepo ?? new Mock<IIngredientRepository>()).Object);
+            return new RecipeRepository((fs ?? CreateFileSystem()).Object, (ingredientRepo ?? new Mock<IIngredientRepository>()).Object, (mapper ?? new Mock<IMapper>()).Object);
         }
 
         private Mock<IIngredientRepository> CreateIngredientRepository(StandardIngredient[] ingredients)
@@ -34,7 +35,7 @@ namespace RecipeLibrary.Tests
 
             await repo.Load();
 
-            fs.Verify(x => x.Load(It.IsAny<string>()));
+            fs.Verify(x => x.LoadJson(It.IsAny<string>()));
         }
 
         [Fact]
@@ -45,7 +46,7 @@ namespace RecipeLibrary.Tests
 
             await repo.Load();
 
-            fs.Verify(x => x.Load("recipes.json"));
+            fs.Verify(x => x.LoadJson("recipes.json"));
         }
 
         private string _recipeJson = "[{'name':'Onion Salad', 'serves' : 2, ingredients:[{'ingredient' : 'Onion', Quantity: 0.5},{'ingredient' : 'Cucumber', Quantity: 0.5}]},{'name': 'Kosambari', 'serves' : 4, ingredients:[{'ingredient' : 'Carrot', Quantity: 1},{'ingredient' : 'White Cabbage', Quantity: 0.25}]},{'name' : 'Chilli', 'serves' : 6, ingredients:[{'ingredient' : 'Onion', Quantity: 1},{'ingredient' : 'Beef', Quantity: 500},{'ingredient' : 'Pepper', Quantity: 1}]}]";
@@ -151,7 +152,7 @@ namespace RecipeLibrary.Tests
         private Mock<IFileSystem> CreateFileSystem()
         {
             var fs = new Mock<IFileSystem>();
-            fs.Setup(x => x.Load(It.IsAny<string>()))
+            fs.Setup(x => x.LoadJson(It.IsAny<string>()))
                 .ReturnsAsync(_recipeJson);
             return fs;
         }
@@ -244,6 +245,39 @@ namespace RecipeLibrary.Tests
             {
                 return obj.Name.GetHashCode();
             }
+        }
+
+        [Fact]
+        public async Task LoadById_CallsFileSystem_Load()
+        {
+            Mock<IFileSystem> fs = CreateFileSystem();
+            var repo = CreateRepository(fs);
+
+            await repo.LoadById("");
+
+            fs.Verify(x => x.LoadDocument<RecipeDocument>(It.IsAny<string>(), It.IsAny<string>()));
+        }
+
+        [Fact]
+        public async Task LoadById_CallsFileSystem_Load_WithFileName()
+        {
+            Mock<IFileSystem> fs = CreateFileSystem();
+            var repo = CreateRepository(fs);
+
+            await repo.LoadById("");
+
+            fs.Verify(x => x.LoadDocument<RecipeDocument>("recipes.json", It.IsAny<string>()));
+        }
+
+        [Fact]
+        public async Task LoadById_CallsFileSystem_Load_WithRecipeId()
+        {
+            Mock<IFileSystem> fs = CreateFileSystem();
+            var repo = CreateRepository(fs);
+
+            await repo.LoadById("12345");
+
+            fs.Verify(x => x.LoadDocument<RecipeDocument>(It.IsAny<string>(), "12345"));
         }
     }
 }

@@ -11,5 +11,6 @@ namespace RecipeLibrary.Core
         Task Load();
         Task Save();
         Recipe[] Search(params StandardIngredient[] ingredients);
+        Task<Recipe> LoadById(string recipeId);
     }
 }

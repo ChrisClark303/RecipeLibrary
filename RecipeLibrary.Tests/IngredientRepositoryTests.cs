@@ -5,8 +5,7 @@ using RecipeLibrary.Core;
 using RecipeLibrary.Models;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 
 namespace RecipeLibrary.Tests
 {
@@ -16,22 +15,22 @@ namespace RecipeLibrary.Tests
         public async Task Load_CallsFileSystem_Load()
         {
             Mock<IFileSystem> fs = CreateFileSystem();
-            var repo = new IngredientRepository(fs.Object);
+            var repo = new IngredientRepository(fs.Object, new Mock<IMapper>().Object);
 
             await repo.Load();
 
-            fs.Verify(x => x.Load(It.IsAny<string>()));
+            fs.Verify(x => x.LoadJson(It.IsAny<string>()));
         }
 
         [Fact]
         public async Task Load_CallsFileSystem_Load_WithFileName()
         {
             Mock<IFileSystem> fs = CreateFileSystem();
-            var repo = new IngredientRepository(fs.Object);
+            var repo = new IngredientRepository(fs.Object, new Mock<IMapper>().Object);
 
             await repo.Load();
 
-            fs.Verify(x => x.Load("ingredients"));
+            fs.Verify(x => x.LoadJson("ingredients"));
         }
 
         private string _ingredientJson = "[{'name':'Onion', 'measurementInfo' : { 'quantity' : 1, 'measure': 'small'}, 'calories' : 35},{'name': 'Carrot', 'measurementInfo' : {'quantity' : 2, 'measure': 'medium'}, 'calories' : 45},{'name' : 'Tomato', 'measurementInfo' : {'quantity' : 7, 'measure' : 'large'}, 'calories' : 25}]";
@@ -41,7 +40,7 @@ namespace RecipeLibrary.Tests
         {
             Mock<IFileSystem> fs = CreateFileSystem();
 
-            var repo = new IngredientRepository(fs.Object);
+            var repo = new IngredientRepository(fs.Object, new Mock<IMapper>().Object);
 
             var ingredients = await repo.Load();
 
@@ -66,7 +65,7 @@ namespace RecipeLibrary.Tests
         private Mock<IFileSystem> CreateFileSystem()
         {
             var fs = new Mock<IFileSystem>();
-            fs.Setup(x => x.Load(It.IsAny<string>()))
+            fs.Setup(x => x.LoadJson(It.IsAny<string>()))
                 .ReturnsAsync(_ingredientJson);
             return fs;
         }
@@ -76,7 +75,7 @@ namespace RecipeLibrary.Tests
         {
             var fileSystem = CreateFileSystem();
 
-            var repo = new IngredientRepository(fileSystem.Object);
+            var repo = new IngredientRepository(fileSystem.Object, new Mock<IMapper>().Object);
             await repo.Save(null);
 
             fileSystem.Verify(fs => fs.Save(It.IsAny<string>(), It.IsAny<string>()));
@@ -87,7 +86,7 @@ namespace RecipeLibrary.Tests
         {
             var fileSystem = CreateFileSystem();
 
-            var repo = new IngredientRepository(fileSystem.Object);
+            var repo = new IngredientRepository(fileSystem.Object, new Mock<IMapper>().Object);
             await repo.Save(null);
 
             fileSystem.Verify(fs => fs.Save("ingredients", It.IsAny<string>()));
@@ -98,7 +97,7 @@ namespace RecipeLibrary.Tests
         {
             var fileSystem = CreateFileSystem();
 
-            var repo = new IngredientRepository(fileSystem.Object);
+            var repo = new IngredientRepository(fileSystem.Object, new Mock<IMapper>().Object);
             StandardIngredient[] ingredients = new[]
             {
                 new StandardIngredient() { Name = "Onion", MeasurementInfo = new Measurement {Quantity = 1, Measure = "medium" }, Calories = 35},
