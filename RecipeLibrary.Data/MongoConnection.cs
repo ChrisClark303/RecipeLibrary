@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace RecipeLibrary.Core
@@ -7,9 +8,9 @@ namespace RecipeLibrary.Core
     {
         private readonly IMongoSettings _settings;
 
-        public MongoConnection(IMongoSettings settings)
+        public MongoConnection(IOptions<MongoSettings> settings)
         {
-            _settings = settings;
+            _settings = settings.Value;
         }
 
         public IMongoCollection<BsonDocument> Connect(string collectionName)
@@ -22,7 +23,7 @@ namespace RecipeLibrary.Core
         {
             var connString = $"mongodb+srv://{_settings.UserName}:{_settings.Password}@{_settings.Uri}?retryWrites=true&w=majority";
             var client = new MongoClient(connString);
-            return client.GetDatabase("RecipeData");
+            return client.GetDatabase(_settings.DatabaseName);
         }
 
         public IMongoCollection<TDocType> Connect<TDocType>(string collectionName)

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Ingredient} from './Ingredient';
 import {Recipe} from './Recipe';
+import { RecipeLight } from './RecipeLight';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class RecipesService {
   };
   
   private recipeServiceUrl: string = 'http://localhost/RecipeLibrary.Api';
+  private v2RecipesServiceUrl : string = 'https://localhost:7153/v2'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -60,6 +62,10 @@ export class RecipesService {
 
   getRecipes() : Observable<Recipe[]> {
     return this.httpClient.get<Recipe[]>(`${this.recipeServiceUrl}/recipe`);
+  }
+
+  getRecipesLight() : Observable<RecipeLight[]> {
+    return this.httpClient.get<RecipeLight[]>(`${this.v2RecipesServiceUrl}/recipes`);
   }
 
   getRecipeById(id:string) : Observable<Recipe> {

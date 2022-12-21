@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeLibrary", "RecipeLibrary\RecipeLibrary.csproj", "{A0F088C7-FC16-44FD-9203-089C6AE04ABE}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeLibrary.Core", "Recip
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeLibrary.Api", "RecipeLibrary.Api\RecipeLibrary.Api.csproj", "{E16EAADA-4342-4A7C-90AE-961972C013C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeLibrary.Data", "RecipeLibrary.Data\RecipeLibrary.Data.csproj", "{5C322B05-63E2-4305-B5EC-9DCEB5B7A66D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeLibrary.Data", "RecipeLibrary.Data\RecipeLibrary.Data.csproj", "{5C322B05-63E2-4305-B5EC-9DCEB5B7A66D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeLibrary.Api.net7", "RecipeLibrary.Api.net7\RecipeLibrary.Api.net7.csproj", "{DDAE0B75-88D0-41B7-B250-936E6C7E8920}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5C322B05-63E2-4305-B5EC-9DCEB5B7A66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C322B05-63E2-4305-B5EC-9DCEB5B7A66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C322B05-63E2-4305-B5EC-9DCEB5B7A66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAE0B75-88D0-41B7-B250-936E6C7E8920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAE0B75-88D0-41B7-B250-936E6C7E8920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAE0B75-88D0-41B7-B250-936E6C7E8920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAE0B75-88D0-41B7-B250-936E6C7E8920}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

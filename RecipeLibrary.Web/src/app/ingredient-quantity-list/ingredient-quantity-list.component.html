@@ -7,9 +7,12 @@
     </div> -->
     <div class="list-border list-container">
         <ul class="ui-listbox-list">
-            <li class="ui-listbox-item" *ngFor="let ri of recipeIngredients" >
+            <li class="ui-listbox-item" *ngFor="let ri of recipeIngredients" >s
               <div>
-                  <div class="badge"><span>{{ri.ingredient.name}}</span></div><input type="number" step="0.01" class="list-border list-input" #selectItem [(ngModel)]="ri.quantity" />
+                  <div class="badge">4
+                    <span>{{ri.ingredient.name}}</span>
+                </div>
+                <input type="number" step="0.01" class="list-border list-input" #selectItem [(ngModel)]="ri.quantity" />
             </div>
             </li>
           </ul>

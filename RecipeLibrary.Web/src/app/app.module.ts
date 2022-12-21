@@ -16,6 +16,7 @@ import { RecipeIngredientsPipe } from './ingredients.pipe';
 import { MessagesComponent } from './messages/messages.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { IngredientRecipeListComponent } from './ingredient-recipe-list/ingredient-recipe-list.component';
+import { RecipeLightListComponent } from './recipe-light-list/recipe-light-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { IngredientRecipeListComponent } from './ingredient-recipe-list/ingredie
     RecipeIngredientsPipe,
     MessagesComponent,
     RecipeViewComponent,
-    IngredientRecipeListComponent
+    IngredientRecipeListComponent,
+    RecipeLightListComponent
   ],
   imports: [
     BrowserModule,

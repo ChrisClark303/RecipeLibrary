@@ -5,5 +5,6 @@
         string Password { get; set; }
         string Uri { get; set; }
         string UserName { get; set; }
+        string DatabaseName { get; set; }
     }
 }

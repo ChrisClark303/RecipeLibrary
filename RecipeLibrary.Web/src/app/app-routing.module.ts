@@ -5,14 +5,16 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { CreateRecipeComponent} from './create-recipe/create-recipe.component';
 import { IngredientsViewComponent} from './ingredients-view/ingredients-view.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import { RecipeLightListComponent } from './recipe-light-list/recipe-light-list.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'ingredients', component: IngredientsViewComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'recipes', component:RecipeViewComponent},
-  { path: 'create-recipe', component:CreateRecipeComponent}
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  //{ path: 'ingredients', component: IngredientsViewComponent },
+   { path: 'ingredients', redirectTo: '/recipes'}, //component: IngredientsViewComponent },
+   { path: 'dashboard', redirectTo: '/recipes'}, //component: DashboardComponent },
+   { path: 'recipes', component:RecipeLightListComponent},
+   { path: 'create-recipe', redirectTo: '/recipes'} //component:CreateRecipeComponent}
 ];
 
 
