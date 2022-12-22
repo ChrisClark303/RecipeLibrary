@@ -1,9 +1,0 @@
-<div>
-    <div class="left-content">
-        <app-recipe-list [selectedRecipe]="selectedRecipe" (onRecipeSelected)="onRecipeSelected($event)"></app-recipe-list>
-    </div>
-
-<div class="right-content">
-<app-ingredient-recipe-list *ngIf="this.selectedRecipe" [title]="this.selectedRecipe.name" [selectedIngredients]="this.selectedRecipe.ingredients"></app-ingredient-recipe-list>
-</div>
-</div>
