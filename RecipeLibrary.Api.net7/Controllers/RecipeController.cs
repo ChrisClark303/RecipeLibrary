@@ -28,5 +28,11 @@ namespace RecipeLibrary.Api.net7.Controllers
         {
             return Ok(await _recipeService.GetRecipes());
         }
+
+        [HttpGet("recipes/lucky-dip")]
+        public async Task<IActionResult> RecipeLuckyDip()
+        {
+            return Ok(await _recipeService.GetRandomRecipe());
+        }
     }
 }

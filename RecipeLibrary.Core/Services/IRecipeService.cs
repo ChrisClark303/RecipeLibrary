@@ -6,6 +6,7 @@ namespace RecipeLibrary.Core.Services
     public interface IRecipeService
     {
         Task AddRecipe(RecipeLight recipe);
+        Task<RecipeLight> GetRandomRecipe();
         Task<RecipeLight[]> GetRecipes();
     }
 }

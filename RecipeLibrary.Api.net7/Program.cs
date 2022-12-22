@@ -1,6 +1,7 @@
 using RecipeLibrary.Api.net7;
 using RecipeLibrary.Core;
 using RecipeLibrary.Core.Services;
+using RecipeLibrary.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<MongoSettings>(builder.Configuration.GetSection("mongoSettings"));
 builder.Services.AddSingleton<IMongoSettings, MongoSettings>();
+builder.Services.AddTransient<IMongoQueryBuilder, MongoQueryBuilder>();
 builder.Services.AddTransient<IMongoConnection, MongoConnection>();
 builder.Services.AddTransient<IRecipeService,RecipeService>();
 var app = builder.Build();
