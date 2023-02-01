@@ -1,0 +1,12 @@
+
+<div class="create-recipe">
+    <span>Name: <input [(ngModel)]="recipe.name"/></span>
+    <span>Style: <input [(ngModel)]="recipe.style" /></span>
+    <span>Source: <input [(ngModel)]="recipe.source" /></span>
+</div>
+    
+<div class="create-recipe">
+    <button (click)="createRecipe()">
+        Create
+      </button>
+</div>

@@ -1,0 +1,14 @@
+
+<div class="create-recipe">
+<span>Name: <input [(ngModel)]="recipe.name"/></span>
+<span>Serves: <input [(ngModel)]="recipe.serves" type="number" step="1"/></span>
+</div>
+
+<app-ingredient-list [ingredientResolver]="this.ingredientResolver" [showSelectionControls]="true" [selectedIngredients]="recipe.ingredients"></app-ingredient-list>
+<app-ingredient-quantity-list [recipeIngredients]="recipe.ingredients" ></app-ingredient-quantity-list>
+
+<div class="create-recipe">
+<button (click)="createRecipe()">
+    Create
+  </button>
+</div>

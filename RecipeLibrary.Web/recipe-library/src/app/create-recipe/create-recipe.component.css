@@ -1,0 +1,27 @@
+.create-recipe {
+    width: 33%
+}
+span {
+    margin: 0em 0em 2em 3em;
+    display: block;
+    width: 100%;
+}
+input {
+    border-radius: 4px;
+    width: 85%;
+    height: 2em;
+    border-style:solid;
+    text-indent: 1em;
+    float: right;
+}
+button {
+    position: relative;
+    margin: 1em 0em 0em 0em;
+    border-radius: 4px;
+    height: 2em;
+    border-style:solid;
+    float: right;
+    font-size: medium;
+    right: -2em;
+    padding: 0em 1em 0em 1em;
+}

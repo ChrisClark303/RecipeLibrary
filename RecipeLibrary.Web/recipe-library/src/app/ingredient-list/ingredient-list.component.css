@@ -1,0 +1,41 @@
+
+  .ingredient-list li, .badge-details {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    border-radius: 4px;
+  }
+  .ingredients h2 span{
+      margin-left: .7em;
+  }
+  .ingredient-list li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .ingredient-list li.selected {
+    background-color: #CFD8DC;
+    color: white;
+  }
+  .ingredient-list li.selected:hover {
+    background-color: #BBD8DC;
+    color: white;
+  }
+  .filter-input input {
+    border-radius: 4px;
+    width: 28.5em;
+    margin-left: 0.5em;
+    height:1.8em;
+    border-style:solid;
+  }
+.ingredients ul {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 20em;
+  }
+.select-item {
+  float: right;
+  margin: 1em 1em 0em 0em;
+}
